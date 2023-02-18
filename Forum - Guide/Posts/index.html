@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- for FF, Chrome, Opera -->
+  <link rel="icon" type="image/png" href="images/CyberClub - Logo" sizes="16x16">
+  <link rel="icon" type="image/png" href="images/CyberClub - Logo" sizes="32x32">
+
+  <!-- for IE -->
+  <link rel="icon" type="image/x-icon" href="images/CyberClub - Logo" >
+  <link rel="shortcut icon" type="image/x-icon" href="images/CyberClub - Logo"/>
+
+<title>HTB Soccer Writeup | CyberClub_CTF</title>
+
+<link rel="stylesheet" href="style.css"><link title="CyberClub_CTF" />
+
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="#">Welcome to CyberClub_CTF</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="#">Archive</a></div>
+        <button class="button-57" role="button" onclick="myFunction()"><span class="text">Toggle</span><span>Color Mode</span></button>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline" data-value="HTB Soccer Writeup">HTB Soccer Writeup</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2023-01-09T00:00:00+00:00" itemprop="datePublished">Feb 18, 2023
+      </time>
+      • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">George Papasotiriou</span></span></p>
+  </header>
+
+  <div class="share-links">
+    <style>
+  #share-buttons {display: inline-block; vertical-align: middle; }
+  #share-buttons:after {content: ""; display: block; clear: both;}
+  #share-buttons > div {position: relative; text-align: left; height: 36px; width: 32px; float: left; text-align: center;}
+  #share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+  #share-buttons > div:hover {cursor: pointer;}
+  #share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+  #share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+  #share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+  #share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+  #share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+  #share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+  #share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+  #share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+  #share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+  #share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+  #share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+  #share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+
+
+
+
+<span style="color: silver;">Share on: </span><div id="share-buttons">
+  <div class="facebook" title="Share this on Facebook"    onclick="window.open('#','popup','width=600,height=600'); return false;">
+    <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+  <div class="twitter"  title="Share this on Twitter"     onclick="window.open('#','popup','width=600,height=600'); return false;">
+    <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+  <div class="linkedin" title="Share this on Linkedin"    onclick="window.open('#','popup','width=600,height=600'); return false;">
+    <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+  <div class="gplus"    title="Share this on Google Plus" onclick="window.open('#','popup','width=600,height=600'); return false;">
+    <svg viewBox="0 0 2304 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1437 913q0 208-87 370.5t-248 254-369 91.5q-149 0-285-58t-234-156-156-234-58-285 58-285 156-234 234-156 285-58q286 0 491 192l-199 191q-117-113-292-113-123 0-227.5 62t-165.5 168.5-61 232.5 61 232.5 165.5 168.5 227.5 62q83 0 152.5-23t114.5-57.5 78.5-78.5 49-83 21.5-74h-416v-252h692q12 63 12 122zm867-122v210h-209v209h-210v-209h-209v-210h209v-209h210v209h209z"/></svg></div>
+  <div class="mail"     title="Share this through Email"  onclick="window.open('mailto:#','popup','width=600,height=600'); return false;">
+    <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
+</div>
+  </div>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <hr />
+
+<h3 id="box-overview">Box Overview</h3>
+<hr />
+<p>Soccer is listed as an Easy difficulty Linux box.</p>
+
+<p><img src="images/20230109160051.png" alt="" /></p>
+
+<p>This box has a surprisingly even matrix and a very close number of user and root solves so privilege escalation might be pretty straightforward.</p>
+
+<h3 id="reconnaissance">Reconnaissance</h3>
+<hr />
+<h4 id="nmap-scan">Nmap Scan</h4>
+
+<p>This is a long one so I’m going to cut off the rest of the output.</p>
+
+<p><img src="images/20230109160958.png" alt="" /></p>
+
+<p>At least its more than another 22/80 box. I’m going to ignore the SSH port and maybe come back to that if SSH is used. The HTTP box has its own vhost <code>soccer.htb</code>, so that can be added to my <code>/etc/hosts</code> file.</p>
+
+<p>Also there appears to be something running on port 9091, but I’ll leave that for now since the HTTP port is really of interest.</p>
+
+<h3 id="walking-the-application">Walking the Application</h3>
+<hr />
+<p>The default page is pretty simple and doesn’t offer too much functionality at <code>/</code>.</p>
+
+<p><img src="images/20230109162442.png" alt="" /></p>
+
+<p>The default landing page is a simple pretty static page with no header or footer. I might as well try gobuster and ffuf for more vhosts.</p>
+
+<h3 id="gobuster-search">Gobuster Search</h3>
+<hr />
+<p><img src="images/20230109162733.png" alt="" /></p>
+
+<p>Using <code>gobuster</code> does get the <code>/tiny</code> subdomain so I can go ahead and visit that first.</p>
+
+<p><img src="images/20230109162809.png" alt="" /></p>
+
+<p>Neat, some input. This leads me to a ‘Tiny File Manager’ page that requires login credentials.  I don’t actually know anything about ‘Tiny File Manager’ so I need to research that first.</p>
+
+<p><img src="images/20230109163437.png" alt="" /></p>
+
+<p>So its a PHP file manager, cool.</p>
+
+<h3 id="exploitation">Exploitation</h3>
+<hr />
+<p>So after poking at the GitHub docs for a couple minutes, I found the default username/password combinations.</p>
+
+<p><img src="images/20230109163659.png" alt="" /></p>
+
+<p>Might as well give it a try, who’s going to bruteforce this poor PHP passion project?</p>
+
+<p><img src="images/20230109163732.png" alt="" /></p>
+
+<p>So that worked, nice. Since I write these as I’m doing the boxes, I now have to find a way to upload and execute code. I can also see that the Tiny File Manager version is 2.4.3, so there could be some cool exploits.</p>
+
+<p>Okay so you can just drop the Pentest Monkey PHP reverse shell on it and that works.</p>
+
+<p><img src="images/20230109171322.png" alt="" /></p>
+
+<p>Just upload it to the <code>/uploads</code> folder and click the Open button.</p>
+
+<p><img src="images/20230109171403.png" alt="" /></p>
+
+<p>This does result in a gateway error but a shell gets returned.</p>
+
+<p><img src="images/20230109171445.png" alt="" /></p>
+
+<p>Cool.</p>
+
+<h3 id="post-exploitation">Post-Exploitation</h3>
+<hr />
+<p>We are dropped into the <code>www-data</code> user account so some lateral movement may be required.</p>
+
+<p><img src="images/20230109171631.png" alt="" /></p>
+
+<p>Yup, I’ll most likely need to get the user account then root after that.</p>
+
+<p><img src="images/20230109172627.png" alt="" /></p>
+
+<p>So I can find this vhost of <code>soc-player</code> so that can also be added to our <code>/etc/hosts</code> file and check it out.</p>
+
+<h3 id="walking-the-application-pt-2">Walking the Application Pt. 2</h3>
+<hr />
+<p><img src="images/20230109172804.png" alt="" /></p>
+
+<p>This looks different, might as well sign up an account and see what’s up.</p>
+
+<p><img src="images/20230109173027.png" alt="" /></p>
+
+<p>So this presents a new page that allows the user to insert their ticket number, this box really keeps on giving.</p>
+
+<p><img src="images/20230109173116.png" alt="" /></p>
+
+<p>And they’re WebSockets because why not? This WebSocket server is most likely what’s running on port 9091.</p>
+
+<p><img src="images/20230109173601.png" alt="" /></p>
+
+<p>Sure looks like it.</p>
+
+<p>The WebSocket connection most likely needs to be attacked using SQLi, there’s not much else to WebSockets that I know of that would be in an “Easy” box.</p>
+
+<h3 id="exploitation-pt-2">Exploitation Pt. 2</h3>
+<hr />
+
+<p>Since I don’t actually know how to test WebSockets for SQLi, I used the script outlined in this article: <code>https://rayhan0x01.github.io/ctf/2021/04/02/blind-sqli-over-websocket-automation.html</code>.</p>
+
+<p><img src="images/20230109175548.png" alt="" /></p>
+
+<p>All that needs to be changed in the first <code>ws_server</code> parameter and the <code>data</code> parameter to <code>id</code>. Then run the script (given that no Python errors stop it).</p>
+
+<p><img src="images/20230109175253.png" alt="" /></p>
+
+<p>Now I can send any <code>sqlmap</code> payload to this localhost Python server and they’ll be reflected in the WebSocket hosted on the Soccer box.</p>
+
+<p><img src="/docs/images/soccer/20230109175420.png" alt="" /></p>
+
+<p>This might take a while but its working.</p>
+
+<p><img src="images/20230109183534.png" alt="" /></p>
+
+<p>It does retrieve <code>soccer_db</code> with 5 databases, but really only the <code>soccer_db</code> database is the one of focus. The <code>information_schema</code>, <code>mysql</code>, <code>performance_schema</code>, and <code>sys</code> are standard.</p>
+
+<p><img src="images/20230109190128.png" alt="" /></p>
+
+<p>I think that php reverse shell at the beginning was a rabbit hole.</p>
+
+<p><img src="images/20230109190310.png" alt="" /></p>
+
+<p>Looks like I can move onto root now that I have basic user access.</p>
+
+<h3 id="post-exploitation-pt-2">Post-Exploitation Pt. 2</h3>
+<hr />
+<p>Now that I have the <code>player</code> accounts SSH credentials, the next logical step is to move towards the <code>root</code> account.</p>
+
+<p>After running linPeas, the <code>dstat</code> command is executable by the group <code>player</code>.</p>
+
+<p><img src="images/20230109192556.png" alt="" /></p>
+
+<p>After checking the <code>dstat</code> binary, there’s a good chance I can use it for privilege escalation.</p>
+
+<p><img src="images/20230109192641.png" alt="" /></p>
+
+<p><code>dstat</code> also supports plugins, so these could be the path to a privilege escalation.</p>
+
+<p><img src="images/20230109193008.png" alt="" /></p>
+
+<p>And since it’s just Python, the plugin can be a simple command that elevates the user. I also noticed that <code>doas</code> is installed on the system, so that can be used to run <code>dstat</code> as root.</p>
+
+<p><img src="images/20230109193406.png" alt="" /></p>
+
+<p><code>root</code> is now achieved (also I changed to <code>/bin/bash</code> sorry about the continuity error).</p>
+
+    <hr>
+<div class="post_navi"><a class="post_navi-item nav_prev" href="#" title="HTB Awkard Writeup">
+    <div class="post_navi-arrow">&lt;</div><div class="post_navi-label">Previous Post</div><div><span>HTB Awkward Writeup</span></div>
+  </a><a class="post_navi-item nav_next" href="#" title="Blog Archive">
+    <div class="post_navi-arrow">&gt;</div><div class="post_navi-label">Blog Archive</div><div><span>Archive of all previous Documentations</span></div>
+  </a></div>
+  </div>
+
+  <a class="u-url" href="#" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Proudly presented by CyberClub_CTF</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">CyberClub</li><li><a class="u-email" href="mailto:dc.cyberclub@acg.edu">dc.cyberclub@acg.edu</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/CyberClub"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">CyberClub</span></a></li><li><a href="#"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">CyberClub</span></a></li><li><a href="#"><svg class="svg-icon"><use xlink:href="#"></use></svg> <span>rss</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>CTF Documentation</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+  function myFunction() {
+     var element = document.body;
+     element.classList.toggle("dark-mode");
+  }
+</script>
+
+<script src="main.js"></script>
+
+</body>
+
+</html>
