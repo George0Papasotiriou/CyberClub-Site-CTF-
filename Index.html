@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+
+    <!-- for FF, Chrome, Opera -->
+    <link rel="icon" type="image/png" href="CyberClub - Logo" sizes="16x16">
+    <link rel="icon" type="image/png" href="CyberClub - Logo" sizes="32x32">
+
+    <!-- for IE -->
+    <link rel="icon" type="image/x-icon" href="CyberClub - Logo" >
+    <link rel="shortcut icon" type="image/x-icon" href="CyberClub - Logo"/>
+
+    <title>Cyberclub_CTF - Index</title>
+</head>
+<body>
+    <section class="showcase">
+        <header>
+            <h1 class="logo" data-value="CyberClub_CTF">CyberClub_CTF</h1>
+            <div class="toggle"></div>
+        </header>
+
+        <video src="VideoB.mp4" muted loop autoplay></video>
+
+        <div class="overlay"></div>
+
+        <div class="text">
+            <h2>The Ultimate</h2>
+            <h3>Tools-Guide Cookbook</h3>
+            <p>A comprehensive guide to the most modern and advanced cybersecuity tools and principles</p>
+            <!-- Main Button sound file and type declaration -->
+            <a class="btn" href="#">Get Started</a>
+                <audio id="hover" preload="auto">
+                    <source src="sounds/Hover_Sound.mp3" type="audio/mpeg">
+                </audio>
+        </div>
+
+        <ul class="social">
+            <!-- Social sound 1 file and type declaration -->
+            <li><a class="Social1" href="#"><img src="734386_facebook_media_online_social_icon.png"></a></li>
+            <audio id="hoverSocial" preload="auto">
+                <source src="sounds/SocialLast.wav" type="audio/mpeg">
+            </audio>
+            <!-- Social sound 2 file and type declaration -->
+            <li><a class="Social2" href="#"><img src="734395_instagram_media_online_photo_social_icon.png"></a></li>
+            <audio id="hoverSocial2" preload="auto">
+                <source src="sounds/SocialSound2.wav" type="audio/mpeg">
+            </audio>
+            <li><a href="#"><img src="734367_media_online_social_twitter_icon.png"></a></li>
+        </ul>
+    </section>
+
+    <div class="menu">
+        <ul>
+            <li><a class="1" href="#">Home</a></li>
+            <!-- Menu note 1 file and type declaration -->
+            <audio id="click" preload="auto">
+                <source src="sounds/MenuNote1.wav" type="audio/mpeg">
+            </audio>
+            <li><a class="2" href="#">News</a></li>
+            <!-- Menu note 2 file and type declaration -->
+            <audio id="click1" preload="auto">
+                <source src="sounds/MenuNote2.wav" type="audio/mpeg">
+            </audio>
+            <li><a class="3" href="#">About</a></li>
+            <!-- Menu note 3 file and type declaration -->
+            <audio id="click2" preload="auto">
+                <source src="sounds/MenuNote3.5.wav" type="audio/mpeg">
+            </audio>
+            <li><a class="4" href="#">Destination</a></li>
+            <!-- Menu note 4 file and type declaration -->
+            <audio id="click3" preload="auto">
+                <source src="sounds/MenuNote4.wav" type="audio/mpeg">
+            </audio>
+            <li><a class="5" href="#">Contact</a></li>
+            <!-- Menu note 5 file and type declaration -->
+            <audio id="click4" preload="auto">
+                <source src="sounds/MenuNote5.wav" type="audio/mpeg">
+            </audio>
+            <li><a class="6" href="#">Project 1</a></li>
+            <!-- Menu note 6 file and type declaration -->
+            <audio id="click5" preload="auto">
+                <source src="sounds/MenuNote6.wav" type="audio/mpeg">
+            </audio>
+        </ul>
+    </div>
+
+    <!-- Menu Close -->
+    <script>
+         const menuToggle = document.querySelector('.toggle');
+      const showcase = document.querySelector('.showcase');
+
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        showcase.classList.toggle('active');
+
+        let beat = new Audio('sounds/MenuClose.wav');
+        beat.play();
+      })
+    </script>
+
+    <!-- Main button sound event listener -->
+    <!-- Play sound on hover (Main Button) -->
+    <script>
+    var beepOne = $("#hover")[0];
+    $(".btn")
+    .mouseenter(function() {
+        beepOne.play();
+    });
+    </script>
+
+    <!-- Stop sound on button leave (Main Button) -->
+    <script>	
+    var beepOne = $("#hover")[0];
+    $(".btn")
+    .mouseleave(function() {
+        beepOne.pause();
+        beepOne.currentTime = 0;
+    });
+    </script>
+
+    <!-- Play sound on hover (Social 1) -->
+    <script>
+        var SocialOne = $("#hoverSocial")[0];
+        $(".Social1")
+        .mouseenter(function() {
+            SocialOne.play();
+        });
+    </script>
+
+    <!-- Stop sound on button leave (Social 1) -->
+    <script>	
+        var SocialOne = $("#hoverSocial")[0];
+        $(".Social1")
+        .mouseleave(function() {
+            SocialOne.pause();
+            SocialOne.currentTime = 0;
+        });
+        </script>
+
+    <!-- Play sound on hover (Social 2) -->
+    <script>
+        var SocialTwo = $("#hoverSocial2")[0];
+        $(".Social2")
+        .mouseenter(function() {
+            SocialTwo.play();
+        });
+    </script>
+
+    <!-- Stop sound on button leave (Social 2) -->
+    <script>	
+        var SocialTwo = $("#hoverSocial2")[0];
+        $(".Social2")
+        .mouseleave(function() {
+            SocialTwo.pause();
+            SocialTwo.currentTime = 0;
+        });
+        </script>
+
+    <!-- Menu option 1 note -->
+    <script>
+    var clickOne = $("#click")[0];
+    $(".1")
+    .click(function() {
+        clickOne.play();
+    });
+    </script>
+
+    <!-- Menu option 2 note -->
+    <script>
+        var clickTwo = $("#click1")[0];
+        $(".2")
+        .click(function() {
+            clickTwo.play();
+        });
+    </script>
+
+    <!-- Menu option 3 note -->
+    <script>
+        var clickThree = $("#click2")[0];
+        $(".3")
+        .click(function() {
+            clickThree.play();
+        });
+    </script>
+
+    <!-- Menu option 4 note -->
+    <script>
+        var clickFour = $("#click3")[0];
+        $(".4")
+        .click(function() {
+            clickFour.play();
+        });
+    </script>
+
+    <!-- Menu option 5 note -->
+    <script>
+        var clickFive = $("#click4")[0];
+        $(".5")
+        .click(function() {
+            clickFive.play();
+        });
+    </script>
+
+    <!-- Menu option 6 note -->
+    <script>
+        var clickSix = $("#click5")[0];
+        $(".6")
+        .click(function() {
+            clickSix.play();
+        });
+    </script>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
